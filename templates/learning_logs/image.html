@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{{ imag }}
+{%for i in entries%}
+<p>{{ i.text }}</p>
+
+    <p>{{ i.date_added|date:'d m, Y H:i' }}</p>
+    {% empty %}
+{% endfor %}
+</body>
+</html>
