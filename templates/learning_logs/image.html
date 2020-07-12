@@ -1,3 +1,4 @@
+{% extends "learning_logs/base.html" %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,12 +6,23 @@
     <title>Title</title>
 </head>
 <body>
-{{ imag }}
+</body>
+{% block content %}
+<img src="{{ imag.image.url}}" alt="connect" style="max-height:200px" >
+{{ imag.title }}
 {%for i in entries%}
 <p>{{ i.text }}</p>
 
     <p>{{ i.date_added|date:'d m, Y H:i' }}</p>
     {% empty %}
 {% endfor %}
-</body>
+
+
+<p>Добавить коментарий:</p>
+ <form action="." method='post'>
+{% csrf_token %}
+{{ form.as_p }}
+<button name='submit'>Опубликовать</button>
+</form>
+{% endblock content %}
 </html>

@@ -1,15 +1,14 @@
 {% extends "learning_logs/base.html" %}
 
 {% block content %}
-    <p>Learning Log helps you keep track of your learning, for any topic you're
-    learning about.</p>
+    <p>Страница всех постов.</p>
 {% for im in posts %}
-    <a href="{% url 'learning_logs:image' im.id %}">{{ im.image.url }}</a>
-    {{ im.title }}
 
-
-
-
+    <li>
+<img src="{{ im.image.url}}" alt="connect" style="max-height:200px" >
+<a href="{% url 'learning_logs:image' im.id %}">{{ im }}</a>
+    </li>
 {% endfor %}
+    <a href="{% url 'learning_logs:new_post' %}">Добавить новое фото:</a>
 
 {% endblock content %}
