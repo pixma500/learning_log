@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'learning_logs.apps.LearningLogsConfig',
+    'users',
 
     
     'bootstrap4',
