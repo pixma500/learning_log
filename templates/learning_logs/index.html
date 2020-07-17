@@ -1,14 +1,67 @@
 {% extends "learning_logs/base.html" %}
-
+{% load bootstrap4 %}
 {% block content %}
-    <p>Страница всех постов.</p>
-{% for im in posts %}
+  <div class="container-fluid">
+       <div class="row ">
+  <div class="row col-2">
+      {% if user.is_authenticated %}
+<a href="{% url 'learning_logs:new_post' %}">Добавить новое фото</a>
+      {% else  %}
+      <a href="{% url 'learning_logs:new_post' %} class="btn btn-info" data-toggle="modal" data-target="#myModal">Добавить новое фото</a>
+<div id="myModal" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-body">Надо зарегистрироваться</div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
 
-    <li>
-<img src="{{ im.image.url}}" alt="connect" style="max-height:200px" >
-<a href="{% url 'learning_logs:image' im.id %}">{{ im }}</a>
-    </li>
-{% endfor %}
-    <a href="{% url 'learning_logs:new_post' %}">Добавить новое фото:</a>
+    </div>
+     <div class="row col">
 
-{% endblock content %}
+             {% for i in posts %}
+           <div class="col-lg-3 col-md-4 col-6">
+
+           <div class="card">
+               {% load thumbnail %}
+{% thumbnail i.image "300x300" as im %}
+              <a href="{% url 'learning_logs:image' i.id %}"> <img src="{{ im.url }}" width="{{ im.width }}"  class="card-img-top" alt="..."></a>
+            {% endthumbnail %}
+  <div class="card-body">
+    <h6>{{ i.title }}</h6>
+
+
+</div>
+          </div>
+            </div>
+             {% endfor %}
+
+         </div>
+     </div>
+  </div>
+</div>
+<p></p>
+    <p></p>
+ <div class="container-center ">
+  <div class="row justify-content-md-center">
+     {% include "learning_logs/pagination.html" with page=posts %}
+  </div>
+     </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

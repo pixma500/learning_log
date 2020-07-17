@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Post(models.Model):
@@ -8,6 +9,7 @@ class Post(models.Model):
     image=models.ImageField(upload_to='images/%Y/%m/%d/')
     description=models.TextField()
     created = models.DateField(auto_now_add=True, db_index=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -22,6 +24,7 @@ class Entry(models.Model):
         topic = models.ForeignKey(Post, on_delete=models.CASCADE)
         text = models.CharField(max_length=250)
         date_added = models.DateTimeField(auto_now_add=True)
+        aftor = models.ForeignKey(User, on_delete=models.CASCADE)
 
         class Meta:
             verbose_name_plural = 'Коментарии'

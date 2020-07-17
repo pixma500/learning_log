@@ -1,0 +1,23 @@
+
+<nav aria-label="...">
+  <ul class="pagination">
+
+{% if page.number > 3 %}
+                 <li class="page-item ">
+      <a class="page-link" href="?page=1"  aria-disabled="true">Первая</a></li>
+         {% endif %}
+ {%for k in posts.paginator.page_range %}
+        {% if page.number == k %}
+
+       <li class="page-item active" aria-current="page">
+      <a class="page-link" href="?page={{ k }}">{{ k }}<span class="sr-only">(current)</span></a>
+    </li>
+     {% elif k > page.number|add:-3 and k < page.number|add:3  %}
+  <li class="page-item"><a class="page-link" href="?page={{ k }}">{{ k }}</a></li>
+
+    {% endif %}
+ {% endfor%}
+
+
+  </ul>
+</nav>

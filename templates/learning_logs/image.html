@@ -1,8 +1,6 @@
 {% extends "learning_logs/base.html" %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+
+
     <title>Title</title>
 </head>
 <body>
@@ -14,6 +12,7 @@
 <p>{{ i.text }}</p>
 
     <p>{{ i.date_added|date:'d m, Y H:i' }}</p>
+    <p>{{ i.aftor}}</p>
     {% empty %}
 {% endfor %}
 
