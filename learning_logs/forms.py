@@ -11,5 +11,5 @@ class EntryForm(forms.ModelForm):
     class Meta:
         model=Entry
         fields=['text',]
-
+        labels={'text':'текст'}
         widgets = {'text': forms.Textarea(attrs={'cols': 60})}

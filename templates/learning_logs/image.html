@@ -1,12 +1,12 @@
 {% extends "learning_logs/base.html" %}
+{
 
-
-    <title>Title</title>
+<title xmlns="http://www.w3.org/1999/html">Title</title>
 </head>
 <body>
 </body>
 {% block content %}
-<img src="{{ imag.image.url}}" alt="connect" style="max-height:200px" >
+<img src="{{ imag.image.url}}" alt="connect" style="max-height:600px" >
 {{ imag.title }}
 {%for i in entries%}
 <p>{{ i.text }}</p>
@@ -16,12 +16,60 @@
     {% empty %}
 {% endfor %}
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Добавить коментарий
+</button>
 
-<p>Добавить коментарий:</p>
- <form action="." method='post'>
-{% csrf_token %}
-{{ form.as_p }}
-<button name='submit'>Опубликовать</button>
-</form>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+         {% if user.is_authenticated %}
+      <div class="modal-header">
+
+        <h5 class="modal-title" id="exampleModalLabel">Ваш коментарий</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <form action="." method='post'>
+            {% csrf_token %}
+            {{ form.as_p }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+          <button type="submit" class="btn btn-primary">Добавить</button>
+           </form>
+          </div>
+      {% else %}
+        <div class="modal-header">
+
+        <h5 class="modal-title" id="exampleModalLabel">Оставлять коментарии могут только
+        зарегистрированные пользователи</h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+              <div class="row justify-content-around">
+    <div class="col-2">
+       <a class="btn btn-primary btn-lg" href="{% url 'users:login' %}" role="button">Войти</a>
+    </div>
+    <div class="col-4">
+     <a class="btn btn-secondary btn-lg" href="{% url 'users:register' %}" role="button">Зарегистрироваться</a>
+    </div>
+  </div>
+
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 {% endblock content %}
 </html>

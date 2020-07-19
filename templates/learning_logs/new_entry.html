@@ -1,13 +1,15 @@
 {% extends "learning_logs/base.html" %}
 {% load bootstrap4 %}
 {% block content %}
-
+{{ imag.id }}
 <p>Add a new entry:</p>
- <form action="{% url 'learning_logs:new_entry' post_id %}" method='post' class="form">
+ <form action="{% url 'learning_logs:image' imag.id %}" method='post' class="form">
 
 {% csrf_token %}
 {{ form.as_p }}
 
+
 <button name='submit'>add entry</button>
 </form>
+
 {% endblock content %}
