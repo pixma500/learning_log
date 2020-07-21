@@ -1,18 +1,16 @@
 {% extends "learning_logs/base.html" %}
-{% load bootstrap4 %}
+
+
+{% block jumb %} {% endblock %}
 {% block content %}
-<p>Add a new Post:</p>
+    <h2>Новое фото:</h2>
 
-<form method="post" enctype="multipart/form-data" class="form" >
-<div class="form-group col-3">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-  {% csrf_token %}
-   {{ form.as_p }}
+<form method="post" enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        {{ form.as_p }}
 
-  <button type="submit">Upload</button>
-</form>
+        <button type="submit">Upload</button>
+    </form>
+
 
 {% endblock content %}

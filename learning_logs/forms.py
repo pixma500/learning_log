@@ -5,7 +5,7 @@ class PostForm(forms.ModelForm):
     class Meta:
         model=Post
         fields=['image','title','description']
-        labels={'image':'фото','title':'название','description':'описание'}
+        labels={'image':'Добавить фото','title':'Название','description':'Описание'}
 
 class EntryForm(forms.ModelForm):
     class Meta:
